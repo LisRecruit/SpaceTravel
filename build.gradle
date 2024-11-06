@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.flywaydb.flyway' version '10.19.0'
+}
+
+apply plugin: 'war'
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    implementation 'com.h2database:h2:2.3.232'
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.3.232'
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '10.19.0'
+    runtimeOnly group: 'org.flywaydb', name: 'flyway-database-postgresql', version: '10.19.0'
+    implementation group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.6.1.Final'
+    implementation platform("org.hibernate.orm:hibernate-platform:6.6.1.Final")
+    implementation "jakarta.transaction:jakarta.transaction-api"
+    // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
+    implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.1.0'
+
+//    implementation group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+//    implementation 'com.h2database:h2-mvstore:2.3.230'
+}
+
+flyway {
+    url = 'jdbc:h2:~/testdb'
+    user = 'sa'
+    password = ''
+    baselineOnMigrate = true
+    baselineVersion = '1'
+    locations = ['classpath:db/migrations']
+    cleanDisabled = false
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'test.db', 'jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1'
+}
