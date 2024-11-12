@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +24,6 @@ public class Client {
     @NotNull
     @Size(min = 3, max = 200)
     private String name;
+    @OneToMany (mappedBy = "client", fetch = FetchType.LAZY)
+    private List<Ticket> tickets;
 }

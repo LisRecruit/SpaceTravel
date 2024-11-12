@@ -22,7 +22,7 @@
         <property name="hibernate.use_sql_comments">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
 
         <property name="hibernate.ejb.packagesToScan">org.example.model</property>
 

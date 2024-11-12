@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.model.Client;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
@@ -49,8 +48,9 @@ public class ClientCrudService {
         }
     }
     public void deleteById (long id){
+        Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
+            transaction = session.beginTransaction();
             Client client = session.get(Client.class, id);
             if (client == null) {
                 throw new IllegalArgumentException ("Client with this ID not found");
@@ -59,9 +59,9 @@ public class ClientCrudService {
                 transaction.commit();
             }
         } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException("Error deleting client", e);
-            }
+            e.printStackTrace();
+            throw new IllegalArgumentException("Error deleting client", e);
+        }
     }
     public List<Client> listAll(){
         List<Client> result = new ArrayList<>();

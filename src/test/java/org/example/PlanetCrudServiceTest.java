@@ -92,7 +92,6 @@ import static org.junit.jupiter.api.Assertions.*;
         planetCrudService.create("Suru");
         planetCrudService.create("Luru");
 
-        // Получаем всех клиентов
         List<Planet> planets = planetCrudService.listAll();
 
         System.out.println("Total clients: " + planets.size());
@@ -100,7 +99,7 @@ import static org.junit.jupiter.api.Assertions.*;
             System.out.println("Planet ID: "+planet.getId()+"  ");
             System.out.println("Planet name: " + planet.getName());
         }
-        // Проверяем, что в списке не пусто
+
         assertNotNull(planets);
         assertEquals(2, planets.size(), "Wrong clients amount");
     }

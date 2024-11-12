@@ -10,7 +10,7 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            return new Configuration().configure("hibernate-test.cfg.xml").buildSessionFactory();
+            return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
         }

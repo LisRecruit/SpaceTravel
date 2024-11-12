@@ -25,6 +25,7 @@ public class Planet {
     @Id
     @NotNull
     @Pattern(regexp = "^[A-Z0-9]+$", message = "ID must contain only uppercase Latin letters")
+    @Column(name = "id", columnDefinition = "VARCHAR(10)")
     private String id;
     @NotNull
     @Size(min = 1, max = 500)

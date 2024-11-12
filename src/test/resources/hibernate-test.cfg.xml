@@ -31,7 +31,6 @@
         <!-- List of annotated entity classes -->
         <mapping class="org.example.model.Client" />
         <mapping class="org.example.model.Planet" />
-
         <mapping class="org.example.model.Ticket" />
 
 
