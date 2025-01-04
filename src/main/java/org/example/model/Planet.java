@@ -30,6 +30,6 @@ public class Planet {
     @NotNull
     @Size(min = 1, max = 500)
     private String name;
-
+//comment for tests
 
 }
