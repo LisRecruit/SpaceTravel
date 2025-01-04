@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
     private ClientCrudService clientCrudService;
     private Flyway flyway;
 
+
     @BeforeEach
     public void setUp() {
         clientCrudService = new ClientCrudService();
